@@ -2,19 +2,22 @@
 // api/config/database.php
 
 function getConexion() {
-    $host = "localhost";
-    $dbname = "name_db";
-    $user = "user";
-    $password = "password";
+
+    $host = $_ENV['MYSQLHOST'];
+    $dbname = $_ENV['MYSQLDATABASE'];
+    $user = $_ENV['MYSQLUSER'];
+    $password = $_ENV['MYSQLPASSWORD'];
+    $port = $_ENV['MYSQLPORT'];
     $charset = "utf8mb4";
 
-    $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
+    $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=$charset";
 
     try {
+
         $pdo = new PDO($dsn, $user, $password, [
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES   => false
+            PDO::ATTR_EMULATE_PREPARES => false
         ]);
 
         return $pdo;
@@ -25,8 +28,8 @@ function getConexion() {
 
         echo json_encode([
             "success" => false,
-            "message" => "Error de conexión a la base de datos"
-            // "error" => $e->getMessage() // (activar solo en desarrollo)
+            "message" => "Error de conexión a la base de datos",
+            "error" => $e->getMessage()
         ]);
 
         exit;
