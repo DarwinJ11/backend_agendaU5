@@ -1,14 +1,12 @@
 <?php
 // api/config/database.php
-
 function getConexion() {
-
-    $host = $_ENV['MYSQLHOST'];
-    $dbname = $_ENV['MYSQLDATABASE'];
-    $user = $_ENV['MYSQLUSER'];
-    $password = $_ENV['MYSQLPASSWORD'];
-    $port = $_ENV['MYSQLPORT'];
-    $charset = "utf8mb4";
+    $host     = getenv('MYSQLHOST');
+    $dbname   = getenv('MYSQLDATABASE');
+    $user     = getenv('MYSQLUSER');
+    $password = getenv('MYSQLPASSWORD');
+    $port     = getenv('MYSQLPORT');
+    $charset  = "utf8mb4";
 
     $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=$charset";
 
