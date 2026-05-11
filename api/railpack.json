@@ -1,0 +1,5 @@
+{
+  "$schema": "https://railpack.com/schema.json",
+  "provider": "php",
+  "extensions": ["pdo_mysql", "mysqli"]
+}
