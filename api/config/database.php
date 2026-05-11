@@ -1,11 +1,11 @@
 <?php
 // api/config/database.php
 function getConexion() {
-    $host     = getenv('gondola.proxy.rlwy.net');
-    $dbname   = getenv('railway');
-    $user     = getenv('root');
-    $password = getenv('QMLFvyRZPpRLAGYVaxJjapTPVdAsXfsk');
-    $port     = getenv('49695');
+    $host     = getenv('MYSQLHOST');
+    $dbname   = getenv('MYSQLDATABASE');
+    $user     = getenv('MYSQLUSER');
+    $password = getenv('MYSQLPASSWORD');
+    $port     = getenv('MYSQLPORT');
     $charset  = "utf8mb4";
 
     $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=$charset";
