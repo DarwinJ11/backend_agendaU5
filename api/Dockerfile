@@ -1,11 +1,16 @@
-FROM php:8.2-apache
+FROM php:8.2-cli
 
+# Instalar extensiones MySQL
 RUN docker-php-ext-install pdo pdo_mysql mysqli
 
-RUN a2enmod rewrite
+# Establecer carpeta de trabajo
+WORKDIR /app
 
-COPY . /var/www/html/
+# Copiar proyecto
+COPY . .
 
-RUN chown -R www-data:www-data /var/www/html
+# Exponer puerto
+EXPOSE 8080
 
-EXPOSE 80
+# Iniciar servidor PHP nativo (SIN Apache)
+CMD ["php", "-S", "0.0.0.0:8080", "-t", "."]
